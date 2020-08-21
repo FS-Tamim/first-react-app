@@ -1,0 +1,133 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    margin:0px;
+    padding:0px;
+}
+
+
+section{
+    height:500px;
+}
+.same-line{
+   
+    float:left;
+    margin-left:2%;
+    padding-left:5%;
+}
+.img-same-line{
+    margin-left:5%;
+   
+    float:left;
+    padding:50px 50px;
+}
+.work{
+    width:25%;
+  
+}
+#text{
+    margin-top:5%;
+}
+.text-color{
+    color: darkviolet;
+}
+.same-same-line img{
+    width:100%;
+}
+h2{
+   font-weight: bold; 
+}
+.link{
+    background-color: darkviolet;
+    text-decoration: none;
+    color: white;
+    border-radius: 4px;
+    padding:10px 10px;
+}
+#first-section{
+    background-image: url("images/header-bg.png");
+    background-repeat: no-repeat;
+}
+#second-section{
+    background-image: url("images/biography-bg.png");
+    background-repeat: no-repeat;
+}
+#third-section{
+    background-image: url("images/latest-work-bg.png");
+    background-repeat: no-repeat;
+    float: left;
+}
+#text-center{
+    text-align: center;
+}
+/* contact section starrt */
+.contact{
+    position: relative;
+   
+    transform: -50%;
+    width: 100%;
+    text-align: center;
+    padding-top: 100px;
+     display: flex;
+     justify-content: center;
+    
+    
+
+}
+.contact h1{
+    text-align: center;
+   
+    font-weight: bold;
+    color:  #3498db;
+}
+.btn{
+    display: inline-block;
+    width: 6%;
+    height: 8%;
+    background-color: #f1f1f1;
+    margin: 10px;
+    border-radius: 30px;
+    box-shadow: 0 5px 15px -5px #00000070;
+    color: #3498db;
+    overflow: hidden;
+    position: relative;
+
+}
+.btn i{
+    line-height: 90px;
+    font-size: 26px;
+    transition:  .2s linear;
+}
+.btn:hover{
+    transform: scale(1.15);
+    color:orange;
+}
+/* contact section end */
+
+/*  customer  feedback section start*/
+.perfonalf{
+    width:25%;
+    margin-left: 3%;
+    padding-left: 2%;
+    float: left;
+    margin-top:2%;
+    box-shadow: 10px 10px 30px gray;
+    border-radius: 10px;
+    border-left: 7px solid;
+    border-image: linear-gradient(180deg,blue,cyan);    
+    border-image-slice: 1;
+}
+.perfonalf:hover{
+    transform: scale(1.1);
+
+}
+.perfonalf h2   {
+    color: orange;
+}
+.feedback h1{
+    text-align: center;
+   
+    font-weight: bold;
+    color:  #3498db;
+}
+
+/*  customer  feedback section end*/
