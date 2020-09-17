@@ -42,7 +42,7 @@ function App() {
          <Login></Login>
          
        </Route>
-       <PrivateRoute  path="/hotels">
+       <PrivateRoute  path="/hotels/:id">
             <Hotels></Hotels>
         </PrivateRoute>
        <Route path='*'>

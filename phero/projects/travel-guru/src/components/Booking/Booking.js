@@ -121,7 +121,7 @@ const Booking = () => {
                     </MuiPickersUtilsProvider>
                     </Grid> 
                 </Grid><br/>
-        <Link to='/hotels'><button className='btn btn-warning bookingbtn'>Book Now</button></Link>
+        <Link to={"/hotels/"+id}><button className='btn btn-warning bookingbtn'>Book Now</button></Link>
  
                </form>
                 
