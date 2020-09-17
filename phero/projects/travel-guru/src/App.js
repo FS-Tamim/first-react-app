@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { createContext, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 import {
@@ -13,10 +13,14 @@ import Header from './components/Header/Header';
 import Booking from './components/Booking/Booking';
 import SignUp from './components/SignUp/SignUp';
 import Login from './components/Login/Login';
+import Hotels from './components/Hotels/Hotels';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
-
+export const UserContext=createContext();
 function App() {
+  const [loggedIn,setLoggedIn]=useState({});
   return (   
+    <UserContext.Provider value={[loggedIn,setLoggedIn]}>
   <div className="app">
       <Router>
       <Header></Header>
@@ -38,6 +42,9 @@ function App() {
          <Login></Login>
          
        </Route>
+       <PrivateRoute  path="/hotels">
+            <Hotels></Hotels>
+        </PrivateRoute>
        <Route path='*'>
          <NotFound></NotFound>
        </Route>
@@ -45,6 +52,7 @@ function App() {
     
    </Router> 
   </div>  
+  </UserContext.Provider>
   );
 }
 

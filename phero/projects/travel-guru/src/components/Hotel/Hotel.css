@@ -1,0 +1,26 @@
+.hotelImage{
+    width: 260px;
+    border-radius: 10px;
+    height: 180px;
+    padding: 3%;
+}
+.singleHotel{
+    display: flex;
+    margin-bottom: 5%;
+    background-color: white;
+    border-radius: 10px;
+}
+.hotelInfo{
+    margin-left: 2%;
+}
+.facilities{
+    display: flex;
+    justify-content: space-around;
+}
+.ratingPrice{
+    display: flex;
+    justify-content: space-around;
+}
+.priceBold{
+    font-weight: bold;
+}

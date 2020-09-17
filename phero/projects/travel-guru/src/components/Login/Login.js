@@ -1,6 +1,6 @@
-    import React, { useState } from 'react';
+    import React, { useContext, useState } from 'react';
     import './Login.css';
-    import { Link, useParams } from 'react-router-dom';
+    import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
     import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
     import Paper from '@material-ui/core/Paper';
     import Grid from '@material-ui/core/Grid';
@@ -12,7 +12,10 @@
     import google from '../../images/Icon/google.png';
     import { useForm } from "react-hook-form";
     import 'bootstrap/dist/css/bootstrap.css';
+import { handleFbSignIn, handleGoogleSignIN, handleGoogleSignout, initialaizeFirebaseFramework, loginwithEmailandPassword } from '../FirebaseConfig/firebasemanager';
+import { UserContext } from '../../App';
 
+    // initialaizeFirebaseFramework();
 
     const useStyles = makeStyles((theme: Theme) =>
     createStyles({
@@ -29,9 +32,63 @@
 
 
     const Login = () => {
+
+              
+const [user,setUser]=useState({
+    userSignined:false,
+    name:'',
+    email:'',
+    photo:''
+})
+const [loggedInUser,setLoggedInUser]=useContext(UserContext);
+let history =useHistory();
+let location = useLocation();
+
+let { from } = location.state || { from: { pathname: "/" } };
+
+   const googleSignin=()=>{
+       handleGoogleSignIN()
+       .then(res=>{
+           setUser(res);
+           setLoggedInUser(res);
+           history.replace(from);
+       })
+   }
+   const googleSignout=()=>{
+       handleGoogleSignout()
+       .then(res=>{
+           setUser(res);
+           setLoggedInUser(res);
+       })
+   }
+   const fbSignIn = () => {
+    handleFbSignIn()
+    .then(res => {
+      setUser(res);
+      setLoggedInUser(res);
+      history.replace(from);
+    })
+}
+
+
+
+
         const classes = useStyles();  
         const { register, handleSubmit,  errors } = useForm();
-        const onSubmit = data => console.log(data);  
+        
+
+const onSubmit = (data)=>{
+
+      
+      if(data.email && data.password){
+        loginwithEmailandPassword(data.email,data.password)
+                  .then(res=>{
+                    setUser(res);
+                    setLoggedInUser(res);
+                    history.replace(from);
+                  })
+              }
+    }  
         
         const [password,setPassword]=useState("");
         const [confirmPassword,setConfirmPassword]=useState("");
@@ -51,8 +108,8 @@
                 <h1>Login</h1>
                 <div className="form-group">
                     <label htmlFor="firstName">Username or Email</label>
-                    <input className="form-control" type="text" name="firstName" ref={register({ required: true })} />
-                    {errors.firstName && <span>This field is required</span>}
+                    <input className="form-control" type="text" name="email" ref={register({ required: true })} />
+                    {errors.email && <span>This field is required</span>}
                 </div>
                 <div className="form-group">
                     <label htmlFor="password">Password</label>
@@ -83,7 +140,7 @@
             <div className='signupwithaccount'>
             <Button
             variant="contained"
-            
+            onClick={fbSignIn}
             className='socialsignup'
             
         
@@ -91,9 +148,8 @@
         </Button><br/><br/>
         <Button
             variant="contained"
-            
             className='socialsignup'
-        
+            onClick={googleSignin}
         >   <img className="socialicone" src={google} alt='google'/><span className="signuptitle"> Countinue with google</span>
         </Button>
 

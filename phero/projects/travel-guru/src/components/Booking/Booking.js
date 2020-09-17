@@ -1,6 +1,6 @@
 import React from 'react';
 import './Booking.css'
-import { useParams } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -37,7 +37,7 @@ const Booking = () => {
   };
     const classes = useStyles();
     const {id}=useParams();
-    const selectedPlace=places.find(place=>place.id===id)
+    const   selectedPlace=places.find(place=>place.id===id)
     return (
         <div className='HomeMain'>
         <div className={classes.root}>
@@ -121,7 +121,7 @@ const Booking = () => {
                     </MuiPickersUtilsProvider>
                     </Grid> 
                 </Grid><br/>
-        <button className='btn btn-warning bookingbtn'>Book Now</button>
+        <Link to='/hotels'><button className='btn btn-warning bookingbtn'>Book Now</button></Link>
  
                </form>
                 

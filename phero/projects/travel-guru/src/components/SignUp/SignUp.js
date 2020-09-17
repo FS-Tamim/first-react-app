@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import './SignUp.css';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useHistory, useLocation, useParams } from 'react-router-dom';
 import { makeStyles, createStyles, Theme } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';
 import Grid from '@material-ui/core/Grid';
@@ -12,6 +12,17 @@ import facebook from '../../images/Icon/fb.png';
 import google from '../../images/Icon/google.png';
 import { useForm } from "react-hook-form";
 import 'bootstrap/dist/css/bootstrap.css';
+import { createUserWithEmailandPassword, handleFbSignIn, handleGoogleSignIN, handleGoogleSignout, initialaizeFirebaseFramework } from '../FirebaseConfig/firebasemanager';
+import { UserContext } from '../../App';
+
+
+initialaizeFirebaseFramework();
+
+
+
+
+
+
 
 
 const useStyles = makeStyles((theme: Theme) =>
@@ -29,9 +40,87 @@ const useStyles = makeStyles((theme: Theme) =>
 
 
 const SignUp = () => {
+
+        
+const [newUser, setNewUser] = useState(false);
+const [user,setUser]=useState({
+    userSignined:false,
+    name:'',
+    email:'',
+    photo:''
+})
+const [loggedInUser,setLoggedInUser]=useContext(UserContext);
+let history =useHistory();
+let location = useLocation();
+
+let { from } = location.state || { from: { pathname: "/" } };
+
+   const googleSignin=()=>{
+       handleGoogleSignIN()
+       .then(res=>{
+           setUser(res);
+           setLoggedInUser(res);
+           history.replace(from);
+       })
+   }
+   const googleSignout=()=>{
+       handleGoogleSignout()
+       .then(res=>{
+           setUser(res);
+           setLoggedInUser(res);
+       })
+   }
+
+   const fbSignIn = () => {
+    handleFbSignIn()
+    .then(res => {
+      setUser(res);
+      setLoggedInUser(res);
+      history.replace(from);
+    })
+}
+
+  //  const handelSignup=(e)=>{
+       
+  //   if(newUser && user.email && user.password){
+  //       createUserWithEmailandPassword(user.name,user.email,user.password)
+  //       .then(res=>{
+  //           setUser(res);
+  //           setLoggedInUser(res);
+  //           history.replace(from);
+
+  //       })
+
+  //       e.preventDefault(); 
+  //   }
+  //   // if(!newUser && user.email && user.password){
+    //     loginwithEmailandPassword(user.email,user.password)
+    //     .then(res=>{
+    //         setUser(res);
+    //         setLoggedInUser(res);
+    //         history.replace(from);
+
+    //     })  
+    // }
+  
+   
+// }
+   
+
     const classes = useStyles();  
     const { register, handleSubmit,  errors } = useForm();
-    const onSubmit = data => console.log(data);  
+    const onSubmit = (data)=>{
+      const name=data.firstName+' '+data.lastName;
+      if(data.email && data.password){
+        createUserWithEmailandPassword(name,data.email,data.password)
+        .then(res=>{
+            console.log(res);
+            setUser(res);
+            setLoggedInUser(res);
+            history.replace(from);
+        })
+    }
+    } 
     
     const [password,setPassword]=useState("");
     const [confirmPassword,setConfirmPassword]=useState("");
@@ -44,8 +133,8 @@ const SignUp = () => {
   const getConfirmPassword=e=>{
       setConfirmPassword(e.target.value);
   }
-  console.log(password);
-  console.log(confirmPassword);
+
+ 
     return (
       <div>
           <Container>
@@ -107,13 +196,14 @@ const SignUp = () => {
         variant="contained"
         
         className='socialsignup'
+        onClick={fbSignIn}
         
        
       ><img className="socialicone" src={facebook} alt='facebbok'/> <span className="signuptitle">   Countinue with facebook</span>
       </Button><br/><br/>
       <Button
         variant="contained"
-        
+        onClick={googleSignin}
         className='socialsignup'
        
       >   <img className="socialicone" src={google} alt='google'/><span className="signuptitle"> Countinue with google</span>
