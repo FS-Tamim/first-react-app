@@ -1,0 +1,29 @@
+.HomeMain{
+    color: white;
+    margin-top: 10%;
+}
+.image{
+    width: 200px;
+    position: relative;
+}
+
+.imageGrid{
+    position: relative;
+}
+.placeTitle{
+    position: absolute;
+    bottom: 15px;
+    left: 40px;
+    font-size:25px;
+    font-weight:bold;
+    color: white;
+  
+  }
+  .title,.description{
+    color:white;
+    font-weight: bold;
+}
+.title{
+    font-weight: bold;
+    margin-top: 20% ;
+}

@@ -1,0 +1,67 @@
+.signUp{
+    margin-left: 10%;
+}
+.signUpForm{
+    background-color: white;
+    width: 100%;
+    padding: 40px;
+    border-radius:5px;
+   
+}
+ .signUp p,h1{
+    text-align: center;
+}
+.signUpButton{
+    margin-top:10px;
+    width:100%
+}
+.signUpForm{
+    margin-left: 22%;
+    margin-top:2%;
+}
+ .signup p,h1,h3{
+    text-align: center;
+}
+.inputfiled{
+    width: 400px;
+}
+.loginsign{
+    color: #FFD300;
+}
+.signupwithaccount{
+    margin-left: 33%;
+    margin-top: 3%;
+    
+
+}
+.socialsignup{
+    margin-top: 3%;
+    border-radius: 100px !important;
+    width: 42%;
+    outline: none;
+    
+}
+.socialicone{
+    width: 30px;
+}
+.signuptitle{
+    margin-left: 10%;
+}
+hr{
+    
+    width:20%;
+    background-color:gray;
+}
+.hr-first{
+    margin-left:29%;
+}
+.hr-second{
+    margin-right:29%;
+}
+.or-text{
+    margin-top:3px;
+    color:gray;
+}
+.or{
+    margin-top: 3%;
+}
